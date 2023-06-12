@@ -1,12 +1,12 @@
 import React from 'react'
 import User from './User'
 
-const UserList = ({ users, deleteUser, changeShowModal, setIsUserToUpdate }) => {
+const UserList = ({ users, changeShowModal, setIsUserToUpdate, setUserDelete }) => {
     return (
         <section className='grid gap-6'>
 
             {
-                users.map((user) => <User setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} Key={user.id} user={user} deleteUser={deleteUser} />)
+                users.map((user) => <User setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} Key={user.id} user={user} />)
 
             }
         </section>

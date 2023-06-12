@@ -43,13 +43,18 @@ function App() {
       .catch((err) => console.log(err))
   }
 
-  const deleteUser = (id) => {
+  const deleteUser = (id, reset) => {
     const url = BASE_URL + `/users/${id}/`
 
     axios.delete(url)
-      .then(({ }) => getAllUsers())
+      .then(({ }) => {
+        getAllUsers()
+        setUserDelete(null)
+        resetModalForm(reset)
+      })
       .catch((err) => console.log(err))
   }
+
 
   const updataUser = (data, reset) => {
     const url = BASE_URL + `/users/${isUserToUpdate.id}/`
@@ -61,6 +66,7 @@ function App() {
       })
       .catch((err) => console.log(err))
   }
+
 
   const resetModalForm = (reset) => {
     setIsShowModal(false)
@@ -81,9 +87,9 @@ function App() {
     <main className='font-["Roboto"]'>
       <Header changeShowModal={changeShowModal} />
 
-      <ModalForm resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
+      <ModalForm deleteUser={deleteUser} resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
 
-      <UserList setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} deleteUser={deleteUser} />
+      <UserList setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} />
 
     </main>
   )

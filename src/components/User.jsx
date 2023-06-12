@@ -1,10 +1,11 @@
 import React from 'react'
 
-const User = ({ user, deleteUser, changeShowModal, setIsUserToUpdate }) => {
+const User = ({ user, changeShowModal, setIsUserToUpdate, setUserDelete }) => {
 
     const handleClickDelete = () => {
-        deleteUser(user.id)
+
         changeShowModal()
+        setUserDelete(user)
     }
 
     const handleClickUpdate = () => {
