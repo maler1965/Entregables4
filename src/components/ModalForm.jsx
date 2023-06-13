@@ -1,17 +1,23 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const ModalForm = ({ isShowModal, createUser, isUserToUpdate, updataUser, resetModalForm, deleteUser, userDelete }) => {
+const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, updataUser, resetModalForm, userDelete }) => {
 
     const { register, handleSubmit, reset } = useForm()
+
+    //takeReset(reset)
 
     const submit = (data) => {
         if (!data.birthday) data.birthday = null
 
         if (userDelete) {
-            deleteUser(userDelete.id, reset)
-        } else {
+            console.log(' si delete   ')
+            resetModalForm(reset)
+            setUserDelete(null)
+            resetModalForm(reset)
 
+        } else {
+            console.log('No delete   ')
             if (isUserToUpdate) {
                 updataUser(data, reset)
             } else {
@@ -22,8 +28,25 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, updataUser, resetM
     }
 
     const handleCloseModal = () => {
+        console.log('delete X 1  si ')
         resetModalForm(reset)
+        setUserDelete(null)
+        resetModalForm(reset)
+
     }
+
+    //setIconDelete(reset)
+
+    /*
+    const takeReset = () => {
+        setIconDelete(reset)
+        console.log('reset ', reset)
+    }
+
+    useEffect(() => {
+        takeReset(reset)
+    }, [])*/
+
 
 
     useEffect(() => {

@@ -16,14 +16,20 @@ const DEFAULT_VALUES = {
 }
 
 function App() {
+
   const [userDelete, setUserDelete] = useState(null)
   const [isUserToUpdate, setIsUserToUpdate] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [users, setUsers] = useState([]);
+  //const [iconDelete, setIconDelete] = useState(null)
 
   const changeShowModal = () => setIsShowModal(!isShowModal);
-
-
+  /*
+    const takeReset = (reset) => {
+      setIconDelete(reset)
+      console.log('reset inicio ', reset)
+    }
+  */
   const getAllUsers = () => {
     const url = BASE_URL + "/users/"
 
@@ -43,14 +49,16 @@ function App() {
       .catch((err) => console.log(err))
   }
 
-  const deleteUser = (id, reset) => {
+  const deleteUser = (id) => {
     const url = BASE_URL + `/users/${id}/`
+
+    console.log('si icon 2')
 
     axios.delete(url)
       .then(({ }) => {
         getAllUsers()
-        setUserDelete(null)
-        resetModalForm(reset)
+        //setUserDelete(null)
+        //  resetModalForm(reset)
       })
       .catch((err) => console.log(err))
   }
@@ -69,6 +77,7 @@ function App() {
 
 
   const resetModalForm = (reset) => {
+    console.log('delete X 2   ', reset)
     setIsShowModal(false)
     reset(DEFAULT_VALUES)
     setIsUserToUpdate(null)
@@ -86,9 +95,9 @@ function App() {
     <main className='sm:grid-cols-[1fr_auto]  mx-auto  bg-white min-h-screen text-black font-["Roboto"]'>
       <Header changeShowModal={changeShowModal} />
 
-      <ModalForm deleteUser={deleteUser} resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
+      <ModalForm setUserDelete={setUserDelete} deleteUser={deleteUser} resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
 
-      <UserList setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} />
+      <UserList deleteUser={deleteUser} createUser={createUser} setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} />
 
     </main>
   )
