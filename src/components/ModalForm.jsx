@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 
 const ModalForm = ({ isShowModal, createUser, isUserToUpdate, updataUser, resetModalForm, deleteUser, userDelete }) => {
 
-    // console.log( "1" ,isUserToUpdate)
     const { register, handleSubmit, reset } = useForm()
 
     const submit = (data) => {
@@ -33,17 +32,6 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, updataUser, resetM
         }
     }, [isUserToUpdate])
 
-
-
-    //
-    /*
-      <h3 className='font-bold text-3xl'>
-                    {userDelete && ("Eliminar usuario")}  &&  {isUserToUpdate ? "Editar usuario" : "Nuevo usuario"}
-                    
-                </h3>
-                
-                <button className='btn-primary'>{isUserToUpdate ? "Guardar cambios" : "Agregar nuevo usuario"}</button>
-    */
     return (
         <section className={`fixed top-0 left-0 right-0 h-screen bg-black/70 grid place-content-center ${isShowModal ? "opacity-100 visible" : "invisible opacity-0"} transition-opacity`}>
             <form onSubmit={handleSubmit(submit)} className='bg-white w-[280px] p-4  grid gap-6 relative'>
@@ -84,7 +72,7 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, updataUser, resetM
                     </div>}
 
 
-                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:text-secondary'><i class='bx bx-x'></i></button>
+                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i class='bx bx-x'></i></button>
 
                 {userDelete ? <button className='btn-primary'> Aceptar</button> : isUserToUpdate ? <button className='btn-primary'> Guardar cambios</button> : <button className='btn-primary'>Agregar nuevo usuario</button>}
 

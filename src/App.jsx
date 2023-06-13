@@ -22,7 +22,7 @@ function App() {
   const [users, setUsers] = useState([]);
 
   const changeShowModal = () => setIsShowModal(!isShowModal);
-  //console.log( "2" ,isUserToUpdate)
+
 
   const getAllUsers = () => {
     const url = BASE_URL + "/users/"
@@ -82,9 +82,8 @@ function App() {
   }, [])
 
 
-
   return (
-    <main className='font-["Roboto"]'>
+    <main className='sm:grid-cols-[1fr_auto]  mx-auto  bg-white min-h-screen text-black font-["Roboto"]'>
       <Header changeShowModal={changeShowModal} />
 
       <ModalForm deleteUser={deleteUser} resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
