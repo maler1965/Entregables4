@@ -3,7 +3,6 @@ import React from 'react'
 const User = ({ user, changeShowModal, deleteUser, setIsUserToUpdate, setUserDelete }) => {
 
     const handleClickDelete = () => {
-        console.log('si icon 1')
         setUserDelete(user)
         changeShowModal()
         deleteUser(user.id)

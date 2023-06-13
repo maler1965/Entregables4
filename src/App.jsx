@@ -5,6 +5,7 @@ import Header from './components/Header'
 import ModalForm from './components/ModalForm'
 import axios from "axios";
 import UserList from './components/UserList';
+import ModalFormNotice from './components/ModalFormNotice';
 
 const BASE_URL = "https://users-crud.academlo.tech"
 const DEFAULT_VALUES = {
@@ -21,15 +22,13 @@ function App() {
   const [isUserToUpdate, setIsUserToUpdate] = useState(null);
   const [isShowModal, setIsShowModal] = useState(false);
   const [users, setUsers] = useState([]);
-  //const [iconDelete, setIconDelete] = useState(null)
+  const [notice, setNotice] = useState(null)
+  const [modalNotice, setModalNotice] = useState(false)
+  let key = 0
 
   const changeShowModal = () => setIsShowModal(!isShowModal);
-  /*
-    const takeReset = (reset) => {
-      setIconDelete(reset)
-      console.log('reset inicio ', reset)
-    }
-  */
+  const changeShowModalNotice = () => setModalNotice(!modalNotice);
+
   const getAllUsers = () => {
     const url = BASE_URL + "/users/"
 
@@ -45,6 +44,9 @@ function App() {
       .then(({ data }) => {
         getAllUsers(data)
         resetModalForm(reset)
+        changeShowModalNotice()
+        setNotice('Crear')
+        key = 1
       })
       .catch((err) => console.log(err))
   }
@@ -52,13 +54,9 @@ function App() {
   const deleteUser = (id) => {
     const url = BASE_URL + `/users/${id}/`
 
-    console.log('si icon 2')
-
     axios.delete(url)
       .then(({ }) => {
         getAllUsers()
-        //setUserDelete(null)
-        //  resetModalForm(reset)
       })
       .catch((err) => console.log(err))
   }
@@ -71,24 +69,34 @@ function App() {
       .then(({ }) => {
         getAllUsers()
         resetModalForm(reset)
+        changeShowModalNotice()
+        setNotice(isUserToUpdate)
+        key = 2
       })
       .catch((err) => console.log(err))
   }
 
 
   const resetModalForm = (reset) => {
-    console.log('delete X 2   ', reset)
     setIsShowModal(false)
     reset(DEFAULT_VALUES)
     setIsUserToUpdate(null)
   }
 
-
-
-
   useEffect(() => {
     getAllUsers()
   }, [])
+
+
+  useEffect(() => {
+    if (key === 1) {
+      setNotice('Crear')
+    }
+    if (key === 2) {
+      setNotice(isUserToUpdate)
+    }
+  }, [modalNotice])
+
 
 
   return (
@@ -96,7 +104,7 @@ function App() {
       <Header changeShowModal={changeShowModal} />
 
       <ModalForm setUserDelete={setUserDelete} deleteUser={deleteUser} resetModalForm={resetModalForm} updataUser={updataUser} userDelete={userDelete} isUserToUpdate={isUserToUpdate} createUser={createUser} isShowModal={isShowModal} />
-
+      {notice && <ModalFormNotice setNotice={setNotice} changeShowModalNotice={changeShowModalNotice} notice={notice} modalNotice={modalNotice} />}
       <UserList deleteUser={deleteUser} createUser={createUser} setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} />
 
     </main>

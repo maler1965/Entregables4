@@ -5,19 +5,13 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, upd
 
     const { register, handleSubmit, reset } = useForm()
 
-    //takeReset(reset)
-
     const submit = (data) => {
         if (!data.birthday) data.birthday = null
 
         if (userDelete) {
-            console.log(' si delete   ')
             resetModalForm(reset)
             setUserDelete(null)
-            resetModalForm(reset)
-
         } else {
-            console.log('No delete   ')
             if (isUserToUpdate) {
                 updataUser(data, reset)
             } else {
@@ -28,25 +22,11 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, upd
     }
 
     const handleCloseModal = () => {
-        console.log('delete X 1  si ')
         resetModalForm(reset)
         setUserDelete(null)
         resetModalForm(reset)
 
     }
-
-    //setIconDelete(reset)
-
-    /*
-    const takeReset = () => {
-        setIconDelete(reset)
-        console.log('reset ', reset)
-    }
-
-    useEffect(() => {
-        takeReset(reset)
-    }, [])*/
-
 
 
     useEffect(() => {
@@ -97,7 +77,7 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, upd
 
                 <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i class='bx bx-x'></i></button>
 
-                {userDelete ? <button className='btn-primary'> Aceptar</button> : isUserToUpdate ? <button className='btn-primary'> Guardar cambios</button> : <button className='btn-primary'>Agregar nuevo usuario</button>}
+                {userDelete ? <button className='btn-primary hover:bg-[#D85D5D] rounded-md'> Aceptar</button> : isUserToUpdate ? <button className='btn-primary hover:bg-[#D85D5D] rounded-md'> Guardar cambios</button> : <button className='btn-primary hover:bg-[#D85D5D] rounded-md'>Agregar nuevo usuario</button>}
 
             </form>
         </section>
