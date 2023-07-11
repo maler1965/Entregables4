@@ -20,6 +20,8 @@ const ModalFormNotice = ({ notice, modalNotice, changeShowModalNotice }) => {
         isfalse = 'Verdadero'
     }
 
+
+
     return (
         <section className={`fixed top-0 left-0 right-0 h-screen bg-black/70 grid place-content-center ${modalNotice ? "opacity-100 visible" : "invisible opacity-0"} transition-opacity`}>
             <form onSubmit={handleSubmit(submit)} className='bg-white w-[280px] p-4  grid gap-6 relative'>

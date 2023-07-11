@@ -64,7 +64,7 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, upd
 
                         <div className='grid gap-2'>
                             <label className='font-bold text-sm' htmlFor="">Contraseña</label>
-                            <input placeholder='Ingresa tu contraseña...' className='bg-gray-100 outline-none p-2 ' type="password" {...register("password")} />
+                            <input placeholder='Ingresa tu contraseña...' className='bg-gray-100 outline-none p-2 ' autoComplete="username" type="password" {...register("password")} />
                         </div>
 
 
@@ -75,7 +75,7 @@ const ModalForm = ({ isShowModal, createUser, isUserToUpdate, setUserDelete, upd
                     </div>}
 
 
-                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i class='bx bx-x'></i></button>
+                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i className='bx bx-x'></i></button>
 
                 {userDelete ? <button className='btn-primary hover:bg-[#D85D5D] rounded-md'> Aceptar</button> : isUserToUpdate ? <button className='btn-primary hover:bg-[#D85D5D] rounded-md'> Guardar cambios</button> : <button className='btn-primary hover:bg-[#D85D5D] rounded-md'>Agregar nuevo usuario</button>}
 

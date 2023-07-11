@@ -97,7 +97,7 @@ function App() {
     }
   }, [modalNotice])
 
-
+  console.log({ users })
 
   return (
     <main className='sm:grid-cols-[1fr_auto]  mx-auto  bg-white min-h-screen text-black font-["Roboto"]'>
