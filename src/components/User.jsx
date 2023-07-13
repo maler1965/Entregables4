@@ -14,7 +14,7 @@ const User = ({ user, changeShowModal, deleteUser, setIsUserToUpdate, setUserDel
     }
 
     return (
-        <article className=' border border-[#b8b5b5]   '>
+        <article className=' border border-[#b8b5b5] p-2 my-8  '>
             <h4 className='font-bold text-[25px] truncate p-2'> {user.first_name} {user.last_name} </h4>
 
             <div className='h-[2px] bg-[#b8b5b5] mx-4 '></div>
