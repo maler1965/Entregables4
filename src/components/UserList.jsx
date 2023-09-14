@@ -3,8 +3,8 @@ import User from './User'
 
 const UserList = ({ users, createUser, deleteUser, changeShowModal, setIsUserToUpdate, setUserDelete }) => {
 
+   
 
-    // grid-cols-[repeat(auto-fill,_280px)] grid gap-4
     return (
         <div className='flex justify-center'>
 
@@ -28,6 +28,10 @@ const UserList = ({ users, createUser, deleteUser, changeShowModal, setIsUserToU
                     }
                 </section>
             </div>
+
+            
+
+            
 
         </div>
     )

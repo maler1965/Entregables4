@@ -24,21 +24,26 @@ function App() {
   const [users, setUsers] = useState([]);
   const [notice, setNotice] = useState(null)
   const [modalNotice, setModalNotice] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
   let key = 0
 
   const changeShowModal = () => setIsShowModal(!isShowModal);
   const changeShowModalNotice = () => setModalNotice(!modalNotice);
 
+
   const getAllUsers = () => {
     const url = BASE_URL + "/users/"
-
+    
     axios.get(url)
       .then(({ data }) => setUsers(data))
       .catch((err) => console.log(err))
   }
 
+
   const createUser = (data, reset) => {
     const url = BASE_URL + "/users/"
+    setIsOpen(true)
 
     axios.post(url, data)
       .then(({ data }) => {
@@ -97,7 +102,6 @@ function App() {
     }
   }, [modalNotice])
 
-  console.log({ users })
 
   return (
     <main className='sm:grid-cols-[1fr_auto]  mx-auto  bg-white min-h-screen text-black font-["Roboto"]'>
@@ -107,7 +111,20 @@ function App() {
       {notice && <ModalFormNotice setNotice={setNotice} changeShowModalNotice={changeShowModalNotice} notice={notice} modalNotice={modalNotice} />}
      {/* */}
      
+     
       <UserList deleteUser={deleteUser} createUser={createUser} setUserDelete={setUserDelete} setIsUserToUpdate={setIsUserToUpdate} changeShowModal={changeShowModal} users={users} />
+
+{isOpen ?  <div></div>  : 
+
+      <div className="flex  justify-center"> 
+         <div className="flex flex-col justify-center text-center p-4 m-8 bg-stone-700 bg-opacity-30 rounded-xl">  
+            <h1> PARA INGRESAR A UN USUARIO</h1>
+            <h2>Da clic en "Crear nuevo usuario"</h2>
+            <h2>Se guardará en la base de datos</h2>
+            </div>
+        </div>
+      }
+
 
     </main>
   )

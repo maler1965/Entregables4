@@ -33,7 +33,7 @@ const ModalFormNotice = ({ notice, modalNotice, changeShowModalNotice }) => {
                     <p> El usuario se ha creado correctamente</p>}
 
 
-                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i class='bx bx-x'></i></button>
+                <button onClick={handleCloseModal} type="button" className='absolute top-2 right-2 text-2xl hover:bg-red-500 rounded-full hover:text-secondary'><i className='bx bx-x'></i></button>
 
                 <button className='btn-primary hover:bg-[#D85D5D] rounded-md'> Aceptar</button>
 
